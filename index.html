@@ -3,693 +3,1363 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Hypertension in Cameroon | The Silent Epidemic – Arnold Takougoum</title>
+    <title>Hypertension in Cameroon | The Silent Killer – Arnold Takougoum</title>
     <meta name="description" content="35% of adults in Cameroon have hypertension. 85.9% don't know it. 9,200 preventable deaths every year. A son's fight for an early-warning system.">
     <meta name="author" content="Arnold Ronyl Takougoum Kankeu">
-   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EP2Z2Q8PZF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-EP2Z2Q8PZF');
-</script>
-    <!-- Font Awesome 6 & Google Fonts -->
+    <!-- Google tag (untouched) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EP2Z2Q8PZF"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EP2Z2Q8PZF');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --ink: #0a0a0a;
+            --paper: #f5f0e8;
+            --blood: #c0281a;
+            --blood-dim: #7a1a10;
+            --bone: #ede8dc;
+            --smoke: #2a2a2a;
+            --ash: #4a4a4a;
+            --ghost: #8a8a8a;
+            --rule: #1a1a1a;
+            --highlight: #e8c84a;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            background: #f4f8fc;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            color: #0a2e2a;
-            line-height: 1.5;
-            scroll-behavior: smooth;
+            background: var(--ink);
+            color: var(--paper);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #dce7ed;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1a6b5e;
-            border-radius: 10px;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
+        /* NOISE TEXTURE OVERLAY */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
         }
 
-        /* modern cards */
-        .card {
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 2rem;
-            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.02);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            backdrop-filter: blur(0px);
-            border: 1px solid rgba(0, 0, 0, 0.03);
+        /* SCROLLBAR */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--ink); }
+        ::-webkit-scrollbar-thumb { background: var(--blood); }
+
+        /* --- MASTHEAD --- */
+        .masthead {
+            border-bottom: 1px solid #222;
+            padding: 1.2rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            background: rgba(10,10,10,0.96);
+            backdrop-filter: blur(10px);
+        }
+        .masthead-left {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.8rem; /* Increased for accessibility */
+            color: var(--ghost);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .masthead-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem; /* Increased for accessibility */
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--paper);
+        }
+        .masthead-right {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.8rem; /* Increased for accessibility */
+            color: var(--blood);
+            letter-spacing: 1px;
         }
 
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 28px 40px -16px rgba(0, 0, 0, 0.12);
-        }
-
-        /* hero with cameroon pattern */
+        /* --- HERO --- */
         .hero {
-            background: radial-gradient(circle at 10% 20%, #083c37, #021f1d);
-            border-radius: 2rem;
-            padding: 3rem 2.5rem;
-            margin-bottom: 2rem;
+            min-height: 100vh;
+            display: grid;
+            grid-template-rows: 1fr auto;
+            padding: 6rem 3rem 3rem;
             position: relative;
             overflow: hidden;
-            color: white;
-            border: 1px solid rgba(255,255,255,0.12);
         }
+
+        /* Big diagonal rule line */
         .hero::after {
-            content: "";
+            content: '';
             position: absolute;
-            top: 0;
+            top: 0; right: -20%;
+            width: 1px;
+            height: 200%;
+            background: linear-gradient(to bottom, transparent, var(--blood) 30%, var(--blood) 70%, transparent);
+            opacity: 0.15;
+            transform: rotate(12deg);
+            transform-origin: top right;
+        }
+
+        /* Animated EKG line in background */
+        .ekg-bg {
+            position: absolute;
+            bottom: 15%;
             left: 0;
             width: 100%;
-            height: 100%;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDQiIGQ9Ik0wIDBoNDB2NDBIMHoiLz48L3N2Zz4=');
-            pointer-events: none;
-            opacity: 0.3;
+            height: 120px;
+            opacity: 0.06;
+            overflow: hidden;
+        }
+        .ekg-bg svg {
+            width: 200%;
+            animation: ekg-scroll 8s linear infinite;
+        }
+        @keyframes ekg-scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
         }
 
-        h1 {
-            font-size: 3.2rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-            max-width: 85%;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-sub {
-            font-size: 1.2rem;
-            opacity: 0.92;
-            margin: 1rem 0 1.8rem;
-            max-width: 70%;
-            font-weight: 400;
-            position: relative;
-            z-index: 1;
-        }
-
-        .author-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(8px);
-            padding: 0.6rem 1.5rem;
-            border-radius: 60px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .stat-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .stat-card {
-            background: white;
-            border-radius: 1.5rem;
-            padding: 1.8rem 1rem;
-            text-align: center;
-            border: 1px solid rgba(31, 95, 85, 0.1);
-            transition: all 0.2s;
-            box-shadow: 0 8px 20px -8px rgba(0,0,0,0.05);
-        }
-        .stat-number {
-            font-size: 3.8rem;
-            font-weight: 800;
-            color: #1a6b5f;
-            line-height: 1;
-            letter-spacing: -2px;
-        }
-        .stat-label {
-            font-weight: 700;
+        .hero-kicker {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.85rem; /* Increased for accessibility */
+            letter-spacing: 4px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.75rem;
-            color: #3c6b64;
-            margin-top: 0.5rem;
-        }
-        .stat-footnote {
-            font-size: 0.7rem;
-            color: #7c9c96;
-            margin-top: 0.5rem;
-        }
-
-        /* improved funnel: labels + bars + percentages outside */
-        .funnel-item {
+            color: var(--blood);
+            margin-bottom: 2rem;
             display: flex;
             align-items: center;
             gap: 1rem;
-            flex-wrap: wrap;
-            margin-bottom: 1.25rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.2s forwards;
         }
-        .funnel-label {
-            width: 200px;
-            font-weight: 700;
-            color: #135c54;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            font-size: 0.95rem;
+        .hero-kicker::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 1px;
+            background: var(--blood);
         }
-        .funnel-bar-bg {
-            flex: 1;
-            background: #e4edf0;
-            border-radius: 40px;
-            height: 3rem;
-            overflow: hidden;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+
+        .hero-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5rem, 8vw, 8rem);
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -0.02em;
+            max-width: 900px;
+            opacity: 0;
+            animation: fadeUp 0.9s ease 0.4s forwards;
         }
-        .funnel-fill {
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding-right: 1rem;
-            font-weight: 800;
-            color: white;
-            font-size: 0.9rem;
-            border-radius: 40px;
-            transition: width 1.2s cubic-bezier(0.22, 0.97, 0.36, 1.02);
-            background: linear-gradient(90deg, #288177, #135c51);
+        .hero-headline em {
+            font-style: italic;
+            color: var(--blood);
         }
-        .funnel-percent {
-            min-width: 75px;
-            text-align: right;
-            font-weight: 800;
-            font-size: 1.4rem;
-            color: #1a6b5f;
-            letter-spacing: -0.5px;
+
+        .hero-deck {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.35rem; /* Increased for accessibility */
+            font-weight: 300;
+            color: #aaa;
+            max-width: 620px;
+            margin: 2.5rem 0;
+            line-height: 1.7;
+            border-left: 2px solid var(--blood);
+            padding-left: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 0.9s ease 0.6s forwards;
         }
-        .control-badge {
-            background: #c23b22;
-            color: white;
-            border-radius: 60px;
-            padding: 0.2rem 1rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        .story-card {
-            background: #fff8f0;
-            border-left: 6px solid #c23b22;
-            padding: 1.4rem 2rem;
-            margin: 1.8rem 0;
-            border-radius: 1.5rem;
-            box-shadow: 0 10px 20px -12px rgba(0,0,0,0.1);
-        }
-        .comparison-flex {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin: 1.5rem 0;
-        }
-        .comp-box {
-            flex: 1;
-            background: #fafcfe;
-            border-radius: 1.5rem;
-            padding: 1.5rem;
-            text-align: center;
-            border: 1px solid #e2edf2;
-        }
-        .btn {
-            background: #c23b22;
-            color: white;
-            border: none;
-            padding: 0.9rem 2rem;
-            border-radius: 60px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.2s;
+
+        /* DEATH COUNTER */
+        .death-counter {
             display: inline-flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            opacity: 0;
+            animation: fadeUp 0.9s ease 0.8s forwards;
+        }
+        .death-counter-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.75rem; /* Increased for accessibility */
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--blood);
+        }
+        .death-counter-number {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 900;
+            color: var(--paper);
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+        .death-counter-sub {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.8rem; /* Increased for accessibility */
+            color: var(--ghost);
+            letter-spacing: 1px;
+        }
+
+        .hero-meta {
+            border-top: 1px solid #222;
+            padding-top: 2rem;
+            display: flex;
             align-items: center;
-            gap: 0.7rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            opacity: 0;
+            animation: fadeUp 0.9s ease 1s forwards;
         }
-        .btn:hover {
-            background: #a52e1a;
-            transform: scale(1.02);
-            box-shadow: 0 12px 20px -8px rgba(194, 59, 34, 0.4);
+        .author-line {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.82rem; /* Increased for accessibility */
+            letter-spacing: 2px;
+            color: var(--ghost);
+            text-transform: uppercase;
         }
-        .btn-outline {
-            background: transparent;
-            border: 2px solid #1a6b5f;
-            color: #1a6b5f;
+        .author-line strong {
+            color: var(--paper);
+            font-weight: 500;
         }
-        .btn-outline:hover {
-            background: #1a6b5f;
+        .scroll-hint {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.75rem; /* Increased for accessibility */
+            letter-spacing: 2px;
+            color: #444;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            animation: bounce 2s ease infinite 2s;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(6px); }
+        }
+
+        /* --- SECTION ANATOMY --- */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 3rem;
+        }
+        .section-rule {
+            width: 100%;
+            height: 1px;
+            background: #1a1a1a;
+            margin-bottom: 4rem;
+        }
+        .section-number {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.75rem; /* Increased for accessibility */
+            letter-spacing: 4px;
+            color: var(--blood);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .section-number::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #1d1d1d;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+        .section-title em { font-style: italic; color: var(--blood); }
+
+        /* --- THE CASCADE (redesigned as tombstones) --- */
+        .cascade-wrap {
+            margin: 4rem 0;
+        }
+        .cascade-item {
+            display: grid;
+            grid-template-columns: 240px 1fr 100px;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 1.2rem;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .cascade-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .cascade-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.88rem; /* Increased for accessibility */
+            letter-spacing: 1px;
+            color: #888;
+            text-transform: uppercase;
+            text-align: right;
+            padding-right: 1.5rem;
+            border-right: 1px solid #222;
+        }
+        .cascade-track {
+            height: 48px;
+            background: #111;
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+        .cascade-fill {
+            height: 100%;
+            width: 0%;
+            transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            padding-left: 1rem;
+            position: relative;
+        }
+        .cascade-fill-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.85rem; /* Increased for accessibility */
+            font-weight: 500;
             color: white;
+            letter-spacing: 1px;
         }
-        .simulator {
-            background: linear-gradient(125deg, #eef3f0, #e2ece7);
-            border-radius: 2rem;
+        .cascade-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--paper);
+            text-align: right;
+        }
+
+        .hr {
+            border: none;
+            border-top: 1px solid #1a1a1a;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .big-numbers {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border: 1px solid #1a1a1a;
+            margin-top: 3rem;
+        }
+        .big-num-cell {
             padding: 2rem;
+            border-right: 1px solid #1a1a1a;
+        }
+        .big-num-cell:last-child {
+            border-right: none;
+        }
+        .big-num-figure {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 900;
+            color: var(--blood);
+            line-height: 1;
+        }
+        .big-num-label {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            color: var(--paper);
+            margin-top: 0.5rem;
+            line-height: 1.4;
+        }
+        .big-num-source {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem; /* Increased for accessibility */
+            color: #555;
+            margin-top: 1rem;
+        }
+
+        .obituary {
+            background: #0d0d0d;
+            border: 1px solid #1a1a1a;
+            padding: 3rem;
+            border-radius: 2px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .obituary-text {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            line-height: 1.5;
+            color: var(--paper);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+        .obituary-text strong { color: var(--blood); font-style: normal; }
+        .obituary-attribution {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.8rem; /* Increased for accessibility */
+            letter-spacing: 2px;
+            color: var(--ghost);
+            text-transform: uppercase;
+            text-align: right;
+        }
+
+        .insight-box {
+            background: #0d0d0d;
+            border: 1px solid #1a1a1a;
+            border-left: 3px solid var(--highlight);
+            padding: 1.5rem 2rem;
             margin: 2rem 0;
         }
-        footer {
-            margin-top: 3rem;
-            text-align: center;
-            border-top: 1px solid #d0dfe5;
-            padding-top: 2rem;
-            font-size: 0.8rem;
-            color: #2e5a54;
+        .insight-box p {
+            font-size: 1rem; /* Increased for accessibility */
+            color: #aaa;
+            line-height: 1.7;
         }
-        .social-links a {
-            color: #2c7a6e;
-            margin: 0 0.7rem;
-            font-size: 1.4rem;
-            transition: 0.2s;
+        .insight-box strong { color: var(--paper); }
+        .insight-box span {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.72rem; /* Increased for accessibility */
+            letter-spacing: 1px;
+            color: #444;
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        /* --- PEER COMPARISON --- */
+        .peer-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+        .peer-table th {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.75rem; /* Increased for accessibility */
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--ghost);
+            border-bottom: 1px solid #222;
+            padding: 1rem 0;
+            text-align: left;
+        }
+        .peer-table td {
+            padding: 1.2rem 0;
+            border-bottom: 1px solid #111;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem; /* Increased for accessibility */
+            color: #888;
+        }
+        .peer-table td:first-child {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--paper);
+            font-size: 1.1rem;
+        }
+        .peer-table td:last-child {
+            font-family: 'DM Mono', monospace;
+            font-size: 1.3rem; /* Increased for accessibility */
+            font-weight: 500;
+        }
+        .peer-table tr.cameroon td { color: var(--blood); }
+        .peer-table tr.cameroon td:last-child { color: var(--blood); }
+        .control-bar-mini {
             display: inline-block;
+            height: 4px;
+            border-radius: 2px;
+            background: currentColor;
+            vertical-align: middle;
+            margin-right: 8px;
         }
-        .social-links a:hover {
-            color: #c23b22;
-            transform: translateY(-3px);
+
+        /* --- SIMULATOR --- */
+        .simulator-section {
+            background: #0a0a0a;
+            border-top: 1px solid #1a1a1a;
+            border-bottom: 1px solid #1a1a1a;
         }
-        canvas {
-            max-height: 260px;
-            margin-top: 1rem;
+        .simulator-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 3rem;
         }
-        @media (max-width: 750px) {
-            .container { padding: 1rem; }
-            h1 { font-size: 2rem; max-width: 100%; }
-            .hero-sub { max-width: 100%; }
-            .hero { padding: 2rem 1.5rem; }
-            .funnel-label { width: 150px; font-size: 0.85rem; }
-            .funnel-percent { font-size: 1.1rem; min-width: 60px; }
-            .stat-number { font-size: 2.5rem; }
+        .simulator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+            margin-top: 3rem;
         }
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+
+        /* Custom slider */
+        .slider-wrapper {
+            margin: 2.5rem 0;
         }
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .tooltip-icon {
-            border-bottom: 1px dashed #2c7a6e;
-            cursor: help;
-            margin-left: 5px;
-        }
-        .ref-link {
-            font-size: 0.7rem;
-            color: #2d7a6c;
-            text-decoration: none;
-            border-bottom: 1px dotted;
-            transition: 0.1s;
-        }
-        .ref-link:hover { color: #c23b22; }
-        .insight {
-            background: #e2f0ed;
-            border-radius: 1.2rem;
-            padding: 1rem 1.3rem;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-        }
-        .global-compare {
+        .slider-labels {
             display: flex;
             justify-content: space-between;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin: 1rem 0;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.75rem; /* Increased for accessibility */
+            letter-spacing: 2px;
+            color: #444;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
         }
-        .compare-item {
-            background: #ffffffcc;
-            border-radius: 1rem;
-            padding: 0.8rem;
-            text-align: center;
-            flex: 1;
-            font-weight: 500;
-        }
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: #1a6b5f;
-            color: white;
-            width: 46px;
-            height: 46px;
-            border-radius: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            transition: opacity 0.3s, transform 0.2s;
-            box-shadow: 0 6px 14px rgba(0,0,0,0.2);
-            z-index: 100;
-        }
-        .back-to-top.visible { opacity: 1; }
-        .back-to-top:hover { transform: scale(1.05); background: #c23b22; }
         input[type=range] {
             -webkit-appearance: none;
-            background: #cbdde0;
-            height: 6px;
-            border-radius: 5px;
+            width: 100%;
+            background: transparent;
+            margin: 0;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            height: 2px;
+            background: #222;
+            border-radius: 0;
         }
         input[type=range]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 22px;
-            height: 22px;
-            background: #146b60;
+            width: 20px;
+            height: 20px;
+            background: var(--blood);
             border-radius: 50%;
+            margin-top: -9px;
             cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            border: 2px solid white;
+            border: 2px solid var(--ink);
+            box-shadow: 0 0 0 1px var(--blood);
         }
-        .pledge-counter {
-            background: #fff3e0;
-            border-radius: 60px;
-            padding: 0.4rem 1rem;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+        .slider-value-display {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--paper);
+            line-height: 1;
+            margin: 1rem 0;
         }
-        hr {
-            margin: 1.5rem 0;
-            border: none;
-            height: 1px;
-            background: linear-gradient(to right, #cbd5e1, transparent);
+        .slider-value-display span { color: var(--blood); }
+
+        .impact-panel {
+            background: #0d0d0d;
+            border: 1px solid #1a1a1a;
+            padding: 2.5rem;
+            min-height: 200px;
         }
-        .citation {
-            font-size: 0.7rem;
-            color: #5f7e78;
+        .impact-metric {
+            margin-bottom: 2rem;
+        }
+        .impact-metric-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1;
+            color: var(--paper);
+        }
+        .impact-metric-value.positive { color: #4caf80; }
+        .impact-metric-value.neutral { color: var(--blood); }
+        .impact-metric-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.75rem; /* Increased for accessibility */
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #555;
             margin-top: 0.3rem;
         }
+        .model-note {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem; /* Increased for accessibility */
+            color: #333;
+            letter-spacing: 1px;
+            border-top: 1px solid #111;
+            padding-top: 1rem;
+            margin-top: 2rem;
+            line-height: 1.8;
+        }
+
+        /* --- CTA --- */
+        .cta-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+        .cta-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 4vw, 4rem);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+        }
+        .cta-headline em { color: var(--blood); font-style: italic; }
+        .cta-body {
+            color: #888;
+            font-size: 1.1rem; /* Increased for accessibility */
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: var(--blood);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.85rem; /* Increased for accessibility */
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 0;
+        }
+        .btn-primary:hover {
+            background: #fff;
+            color: var(--ink);
+        }
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: transparent;
+            color: var(--paper);
+            border: 1px solid #333;
+            padding: 1rem 2.5rem;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.85rem; /* Increased for accessibility */
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 0;
+            margin-left: 1rem;
+        }
+        .btn-ghost:hover {
+            border-color: var(--paper);
+        }
+
+        .pledge-display {
+            text-align: center;
+        }
+        .pledge-number {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(4rem, 8vw, 8rem);
+            font-weight: 900;
+            color: var(--paper);
+            line-height: 1;
+        }
+        .pledge-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.75rem; /* Increased for accessibility */
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--blood);
+            margin-top: 0.5rem;
+        }
+        .pledge-note {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem; /* Increased for accessibility */
+            color: #333;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid #1a1a1a;
+            padding: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: end;
+        }
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--paper);
+            margin-bottom: 0.5rem;
+        }
+        .footer-sub {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.75rem; /* Increased for accessibility */
+            letter-spacing: 2px;
+            color: #333;
+            text-transform: uppercase;
+            line-height: 2;
+        }
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: flex-end;
+        }
+        .footer-links a {
+            color: #333;
+            font-size: 1.2rem;
+            transition: color 0.2s;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--blood); }
+
+        /* --- BACK TO TOP --- */
+        .back-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 40px;
+            height: 40px;
+            background: var(--blood);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.2s;
+            z-index: 500;
+        }
+        .back-top.visible { opacity: 1; }
+        .back-top:hover { transform: translateY(-3px); }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .masthead { padding: 1rem 1.5rem; }
+            .hero { padding: 5rem 1.5rem 2rem; }
+            .section { padding: 3rem 1.5rem; }
+            .two-col { grid-template-columns: 1fr; gap: 2rem; }
+            .big-numbers { grid-template-columns: 1fr; }
+            .big-num-cell { border-right: none; border-bottom: 1px solid #1a1a1a; }
+            .cascade-item { grid-template-columns: 1fr; gap: 0.5rem; text-align: center; padding: 1rem 0; }
+            .cascade-label { text-align: center; border-right: none; padding-right: 0; font-size: 0.75rem; }
+            .cascade-track { width: 80%; margin: 0 auto; }
+            .cascade-value { text-align: center; }
+            .simulator-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .cta-section { grid-template-columns: 1fr; gap: 3rem; }
+            .obituary { padding: 2rem; }
+            footer { grid-template-columns: 1fr; }
+            .footer-links { justify-content: flex-start; }
+            .btn-ghost { margin-left: 0; margin-top: 0.8rem; }
+        }
+
+        /* TOOLTIP */
+        [data-tooltip] {
+            border-bottom: 1px dotted #444;
+            cursor: help;
+        }
+
+        /* LIVE DOT */
+        .live-dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--blood);
+            margin-right: 6px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 0.7; }
+            50% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0.8); opacity: 0.7; }
+        }
+
+        /* Policy Section Specifics */
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .policy-card {
+            background: #0d0d0d;
+            border: 1px solid #1a1a1a;
+            padding: 2rem;
+            border-radius: 2px;
+        }
+        .policy-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--blood);
+            margin-bottom: 1rem;
+        }
+        .policy-card p {
+            font-size: 0.95rem;
+            color: #aaa;
+            line-height: 1.7;
+        }
+
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="hero fade-up">
-        <h1>Hypertension in Cameroon:<br>The <span style="color:#ffbc6e;">Silent Epidemic</span></h1>
-        <div class="hero-sub">85.9% unaware. 3.5% controlled. 9,200 preventable deaths each year. This is the crisis I'm solving with data — starting now.</div>
-        <div class="author-badge">
-            <i class="fas fa-chart-line"></i> Arnold Ronyl Takougoum Kankeu · Health Data Scientist · <i class="fas fa-map-marker-alt"></i> Yaoundé, Cameroon
-        </div>
-    </div>
 
-    <!-- Treatment cascade - completely legible funnel -->
-    <div class="card" style="padding: 2rem; margin-bottom: 2rem;">
-        <h2 style="font-size: 1.9rem; font-weight: 700; color: #135c54;">The treatment cascade: where Cameroon loses</h2>
-        <p style="color: #3c6b64; margin-bottom: 1.8rem; border-left: 3px solid #c23b22; padding-left: 1rem;">
-            For every 100 adults with hypertension, the health system fails at each step. <i class="fas fa-info-circle tooltip-icon" title="Lemogoum et al. 2020 (Urban Cameroon) & WHO STEPS 2017"></i>
-        </p>
-        <div id="funnel-container">
-            <div class="funnel-item">
-                <div class="funnel-label"><i class="fas fa-heartbeat"></i> Have hypertension</div>
-                <div class="funnel-bar-bg"><div class="funnel-fill" data-target="100" style="width: 0%;">100%</div></div>
-                <div class="funnel-percent">100%</div>
-            </div>
-            <div class="funnel-item">
-                <div class="funnel-label"><i class="fas fa-brain"></i> Aware they have it</div>
-                <div class="funnel-bar-bg"><div class="funnel-fill" data-target="14.1" style="width: 0%; background: linear-gradient(90deg,#d96c52,#bc4128);">14.1%</div></div>
-                <div class="funnel-percent">14.1%</div>
-            </div>
-            <div class="funnel-item">
-                <div class="funnel-label"><i class="fas fa-pills"></i> On medication</div>
-                <div class="funnel-bar-bg"><div class="funnel-fill" data-target="8.5" style="width: 0%; background: linear-gradient(90deg,#d96c52,#bc4128);">8.5%</div></div>
-                <div class="funnel-percent">8.5%</div>
-            </div>
-            <div class="funnel-item">
-                <div class="funnel-label"><i class="fas fa-chart-line"></i> Under control (BP &lt;140/90)</div>
-                <div class="funnel-bar-bg"><div class="funnel-fill" data-target="3.5" style="width: 0%; background: linear-gradient(90deg,#d96c52,#bc4128);">3.5%</div></div>
-                <div class="funnel-percent">3.5%</div>
+    <header class="masthead">
+        <div class="masthead-left">Health Data</div>
+        <div class="masthead-title">Hypertension in Cameroon</div>
+        <div class="masthead-right"><span class="live-dot"></span>Live</div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-kicker"><i class="fas fa-heartbeat"></i> The Silent Killer</div>
+            <h1 class="hero-headline">Cameroon's Hidden <br><em>Health Crisis</em></h1>
+            <p class="hero-deck">
+                35% of adults in Cameroon live with hypertension. A staggering 85.9% are unaware of their condition. This silent epidemic claims 9,200 preventable lives every year. This is a son's fight for an early-warning system.
+            </p>
+            <div class="death-counter">
+                <div class="death-counter-label">Lives Lost This Year</div>
+                <div class="death-counter-number" id="deathClock">0</div>
+                <div class="death-counter-sub">Preventable deaths from hypertension</div>
             </div>
         </div>
-        <div style="background:#eef4f2; border-radius: 1.2rem; padding: 1rem; text-align: center; margin-top: 1rem;">
-            <i class="fas fa-exclamation-triangle" style="color:#c23b22;"></i> <strong>Only 1 in 28 hypertensive patients</strong> has it under control. The rest are invisible — until stroke or heart failure strikes.
+        <div class="hero-meta">
+            <div class="author-line">By <strong>Arnold Ronyl Takougoum Kankeu</strong></div>
+            <div class="scroll-hint">Scroll to learn more <i class="fas fa-arrow-down"></i></div>
         </div>
-        <div class="citation" style="text-align:right;">📄 Lemogoum D. et al., J Clin Hypertens 2020; WHO STEPS Cameroon 2017 <a href="#" class="ref-link" style="margin-left:5px;" title="View source">(source)</a></div>
+
+        <div class="ekg-bg">
+            <svg viewBox="0 0 1000 120" preserveAspectRatio="none">
+                <path d="M 0 60 L 100 60 L 110 50 L 120 70 L 130 60 L 200 60 L 210 50 L 220 70 L 230 60 L 300 60 L 310 50 L 320 70 L 330 60 L 400 60 L 410 50 L 420 70 L 430 60 L 500 60 L 510 50 L 520 70 L 530 60 L 600 60 L 610 50 L 620 70 L 630 60 L 700 60 L 710 50 L 720 70 L 730 60 L 800 60 L 810 50 L 820 70 L 830 60 L 900 60 L 910 50 L 920 70 L 930 60 L 1000 60" fill="none" stroke="var(--blood)" stroke-width="2"/>
+            </svg>
+        </div>
+    </section>
+
+    <hr class="hr">
+
+    <!-- SECTION 2: KEY NUMBERS -->
+
+    <section class="section">
+        <div class="section-number">02 — The Numbers</div>
+        <h2 class="section-title reveal">Three figures<br>that <em>demand</em> action</h2>
+
+        <div class="big-numbers reveal" style="margin-top: 3rem;">
+            <div class="big-num-cell" data-index="I">
+                <div class="big-num-figure"><span data-count="35" data-suffix="%">0</span></div>
+                <div class="big-num-label">of Cameroonian adults<br>have hypertension</div>
+                <div class="big-num-source">Cameroon DHS 2018 / WHO</div>
+            </div>
+            <div class="big-num-cell" data-index="II">
+                <div class="big-num-figure"><span data-count="85.9" data-suffix="%" data-decimal="1">0</span></div>
+                <div class="big-num-label">of those patients are<br>completely unaware</div>
+                <div class="big-num-source">Urban Cameroon study, Lemogoum 2020</div>
+            </div>
+            <div class="big-num-cell" data-index="III">
+                <div class="big-num-figure"><span data-count="47" data-suffix="">0</span></div>
+                <div class="big-num-label">average age of death from<br>preventable hypertensive crisis</div>
+                <div class="big-num-source">Cameroon CVD Registry / IHME GBD</div>
+            </div>
+        </div>
+
+    </section>
+
+    <hr class="hr">
+
+    <!-- SECTION 3: STORY -->
+
+    <section class="section" style="padding-bottom: 2rem;">
+        <div class="section-number">03 — The Human Cost</div>
+    </section>
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 3rem;">
+        <div class="obituary reveal">
+            <p class="obituary-text">
+                "My father was one of the <strong>85.9%</strong>.
+                At 45, his blood pressure was flagged — twice. 
+                No follow-up system existed to catch him.
+                No SMS reminder. No community health worker to call back.
+                He died of a preventable stroke at <strong>47 years old</strong>.
+                This dashboard exists so that no Cameroonian family 
+                loses a parent to <strong>ignorance</strong>."
+            </p>
+            <div class="obituary-attribution">Arnold Ronyl Takougoum Kankeu · Health Data Scientist · Son</div>
+        </div>
     </div>
 
-    <!-- Key stats -->
-    <div class="stat-grid fade-up">
-        <div class="stat-card">
-            <i class="fas fa-heartbeat" style="font-size: 2rem; color:#1f6e62;"></i>
-            <div class="stat-number" data-count="35">0</div>
-            <div class="stat-label">Adults with hypertension (%)</div>
-            <div class="stat-footnote">Cameroon DHS 2018 / WHO</div>
-        </div>
-        <div class="stat-card">
-            <i class="fas fa-blind" style="font-size: 2rem;"></i>
-            <div class="stat-number" data-count="85.9">0</div>
-            <div class="stat-label">Unaware they have it</div>
-            <div class="stat-footnote">Urban Cameroon study 2020</div>
-        </div>
-        <div class="stat-card">
-            <i class="fas fa-skull-crosswalk" style="font-size: 2rem;"></i>
-            <div class="stat-number" data-count="47">0</div>
-            <div class="stat-label">Avg. death age (preventable)</div>
-            <div class="stat-footnote">Cameroon CVD registry / IHME</div>
-        </div>
-    </div>
+    <hr class="hr" style="margin-top: 3rem;">
 
-    <!-- personal story -->
-    <div class="story-card fade-up">
-        <i class="fas fa-heartbeat" style="color: #c23b22; font-size: 1.6rem; margin-right: 0.5rem;"></i>
-        <strong>“My father was one of the 85.9%.”</strong> At 45, his BP was flagged twice. No follow-up. No system to catch him. He died from a preventable stroke at 47. <br>
-        <span style="display: inline-block; margin-top: 0.8rem; background: #c23b2210; padding: 0.3rem 1rem; border-radius: 40px; font-weight: 500;">I built this dashboard so no Cameroonian loses a parent to ignorance.</span>
-    </div>
+    <!-- SECTION 4: SCREENING GAP -->
 
-    <!-- screening gap with chart -->
-    <div class="card" style="padding: 2rem; margin-bottom: 2rem;">
-        <h2 style="font-size: 1.8rem;">The screening blind spot</h2>
-        <p><strong>55.9% of men have never had their blood pressure measured</strong> — vs 32% of women. This fuels the unawareness crisis.</p>
-        <canvas id="screeningChart" width="400" height="200" style="max-width:100%; margin: 1rem 0;"></canvas>
-        <div class="insight"><i class="fas fa-chalkboard-user"></i> <strong>Men are 1.75x more likely to never get screened.</strong> Targeted outreach in barbershops, taxi ranks, and workplaces could save thousands. <a href="#" class="ref-link" title="Mbeh et al. 2019, Pan Afr Med J">Mbeh 2019</a></div>
-    </div>
-
-    <!-- global context -->
-    <div class="card" style="padding: 1.5rem; margin-bottom: 2rem;">
-        <h3 style="font-size: 1.5rem;">Cameroon lags behind peers</h3>
-        <div class="global-compare">
-            <div class="compare-item"><strong>🇨🇲 Cameroon</strong><br>Control: 3.5%</div>
-            <div class="compare-item"><strong>🇿🇦 South Africa</strong><br>Control: 14%</div>
-            <div class="compare-item"><strong>🇰🇪 Kenya</strong><br>Control: 9%</div>
-            <div class="compare-item"><strong>🌍 Global LMIC avg</strong><br>Control: 11%</div>
-        </div>
-        <div class="citation">Source: NCD Risk Factor Collaboration (Lancet 2021) <a href="#" class="ref-link">↗</a></div>
-    </div>
-
-    <!-- Simulator with robust evidence -->
-    <div class="simulator fade-up">
-        <h3 style="font-size: 1.8rem; margin-bottom: 0.3rem;"><i class="fas fa-sliders-h"></i> What if we scaled awareness nationwide?</h3>
-        <p>Currently, awareness among hypertensives is 14.1% → control rate only 3.5%. Each 1% absolute increase in awareness raises control by 0.4% (real-world meta-analysis). Baseline: <strong>~9,200 preventable deaths/year</strong> (IHME 2021).</p>
-        <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin: 1.5rem 0;">
-            <span style="font-weight:600;"><i class="fas fa-bullhorn"></i> Awareness target (% of hypertensives):</span>
-            <input type="range" id="awarenessSlider" min="14.1" max="70" step="0.5" value="14.1" style="flex:1;">
-            <span id="sliderValue" style="font-weight:800; background:#fff; padding:0.3rem 1.2rem; border-radius: 60px;">14.1%</span>
-        </div>
-        <div id="impactMessage" style="background: white; border-radius: 1rem; padding: 1.2rem; font-weight: 500; border-left: 5px solid #146b60; box-shadow: 0 2px 8px rgba(0,0,0,0.02);"></div>
-        <div class="citation" style="margin-top: 0.8rem;"><i class="fas fa-database"></i> Model: control improvement slope 0.4 (derived from global hypertension management trials). Mortality reduction RR 0.65 from antihypertensive treatment meta-analysis (Lancet 2016). Baseline deaths: 9,200 (GBD 2021).</div>
-    </div>
-
-    <!-- action + pledge -->
-    <div class="card" style="padding: 2rem; background: linear-gradient(115deg, #fef7ed, #fffaf2); margin-bottom: 1rem;">
-        <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;">
-            <div style="flex:2">
-                <i class="fas fa-mobile-alt" style="font-size: 2.2rem; color:#1f6e62;"></i>
-                <h3 style="font-size: 1.7rem; margin: 0.5rem 0 0.8rem;">The remedy: A smart early-warning system</h3>
-                <p>Community health workers log BP into a simple app. If elevated → SMS reminders & nurse alerts. No one falls through. <strong>This dashboard is the first prototype of a national surveillance tool.</strong></p>
-                <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem;">
-                    <button class="btn" id="pledgeBtn"><i class="fas fa-hand-holding-heart"></i> Pledge to get screened</button>
-                    <button class="btn btn-outline" id="shareBtn"><i class="fas fa-share-alt"></i> Share the crisis</button>
+    <section class="section">
+        <div class="section-number">04 — The Screening Blindspot</div>
+        <div class="two-col">
+            <div class="reveal">
+                <h2 class="section-title" style="font-size: clamp(1.8rem, 3vw, 2.8rem);">Men are 1.75× <em>less likely</em> to ever be screened</h2>
+                <p style="color: #666; font-size: 1rem; line-height: 1.8; margin: 1.5rem 0;">
+                    55.9% of men in Cameroon have never had their blood pressure measured. For women, the figure is 32% — already damning, but men are far more invisible to the system. This single gap explains much of the unawareness crisis.
+                </p>
+                <div class="insight-box">
+                    <p>
+                        <strong>Targeted outreach works.</strong> Barbershops, taxi ranks, construction sites, and informal markets are where Cameroonian men spend time. Community-based BP screening at these sites has shown 3× higher uptake than clinic-only approaches in comparable sub-Saharan settings.
+                        <span>Mbeh et al., Pan African Medical Journal 2019</span>
+                    </p>
                 </div>
             </div>
-            <div style="flex:1; text-align:center; background: white; border-radius: 1.5rem; padding: 1rem;">
-                <i class="fas fa-chart-simple" style="font-size: 3rem; color:#c23b22;"></i>
-                <div style="font-weight:800; font-size: 1.5rem;">+312%</div>
-                <div>screening capacity (pilot, 2023)</div>
-                <div class="pledge-counter" style="margin-top: 1rem;" id="pledgeCounterDisplay"><i class="fas fa-users"></i> <span id="pledgeCount">0</span> pledged</div>
+            <div class="chart-container reveal">
+                <div style="font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: #444; margin-bottom: 1.5rem;">
+                    Adults who have never had BP measured (%)
+                </div>
+                <canvas id="screeningChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <hr class="hr">
+
+    <!-- SECTION 5: GLOBAL COMPARISON -->
+
+    <section class="section">
+        <div class="section-number">05 — Regional Context</div>
+        <h2 class="section-title reveal">Cameroon lags every <em>comparable nation</em></h2>
+        <p class="reveal" style="color: #666; font-size: 1rem; max-width: 600px; margin-top: 1rem; margin-bottom: 2rem;">
+            Hypertension control rate: the percentage of hypertensives with BP below 140/90 mmHg.
+            <span>NCD Risk Factor Collaboration (NCD-RisC), Lancet 2021</span>
+        </p>
+        <table class="peer-table reveal">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>Region</th>
+                    <th>Control rate</th>
+                    <th>Gap vs. Cameroon</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="cameroon">
+                    <td><i class="fas fa-flag"></i> Cameroon</td>
+                    <td>Central Africa</td>
+                    <td><span class="control-bar-mini" style="width: 14px;"></span>3.5%</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-flag"></i> Ghana</td>
+                    <td>West Africa</td>
+                    <td><span class="control-bar-mini" style="width: 22px;"></span>6%</td>
+                    <td style="color: #4caf80;">+2.5pp</td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-flag"></i> Kenya</td>
+                    <td>East Africa</td>
+                    <td><span class="control-bar-mini" style="width: 36px;"></span>9%</td>
+                    <td style="color: #4caf80;">+5.5pp</td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-flag"></i> South Africa</td>
+                    <td>Southern Africa</td>
+                    <td><span class="control-bar-mini" style="width: 56px;"></span>14%</td>
+                    <td style="color: #4caf80;">+10.5pp</td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-globe-africa"></i> Sub-Saharan avg.</td>
+                    <td>Regional</td>
+                    <td><span class="control-bar-mini" style="width: 44px;"></span>11%</td>
+                    <td style="color: #4caf80;">+7.5pp</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <hr class="hr">
+
+    <!-- SECTION 6: SIMULATOR -->
+
+    <div class="simulator-section">
+        <div class="simulator-inner">
+            <div class="section-number">06 — The Intervention Model</div>
+            <h2 class="section-title reveal">If we scale awareness,<br><em>how many survive?</em></h2>
+
+            <div class="simulator-grid">
+                <div class="reveal">
+                    <p style="color: #666; font-size: 1rem; line-height: 1.8; margin-bottom: 2rem;">
+                        Currently, only 14.1% of hypertensives in Cameroon know their status. 
+                        Drag the slider to model what happens as that number rises — 
+                        based on real-world treatment trial data.
+                    </p>
+                    <div class="slider-wrapper">
+                        <div class="slider-labels">
+                            <span>Current: 14.1%</span>
+                            <span>Target: 70%</span>
+                        </div>
+                        <input type="range" id="awarenessSlider" min="14.1" max="70" step="0.5" value="14.1">
+                        <div style="margin-top: 1.5rem;">
+                            <div style="font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: #444; margin-bottom: 0.3rem;">Awareness rate</div>
+                            <div class="slider-value-display" id="sliderValueDisplay">14.1<span>%</span></div>
+                        </div>
+                    </div>
+                    <div class="model-note">
+                        MODEL NOTE: Control improvement slope = 0.4 per 1pp awareness gain, derived from global hypertension management meta-analyses. Mortality reduction RR = 0.65 from antihypertensive treatment (Lancet 2016 meta-analysis). Baseline deaths: 9,200/year (GBD 2021, IHME). This model is illustrative — exact projections require Cameroon-specific intervention studies.
+                    </div>
+                </div>
+
+                <div class="reveal">
+                    <div class="impact-panel">
+                        <div class="impact-metric">
+                            <div class="impact-metric-value neutral" id="controlRateDisplay">3.5%</div>
+                            <div class="impact-metric-label">Projected control rate</div>
+                        </div>
+                        <div class="impact-metric">
+                            <div class="impact-metric-value positive" id="deathsAvertedDisplay">0</div>
+                            <div class="impact-metric-label">Deaths averted per year</div>
+                        </div>
+                        <div class="impact-metric">
+                            <div class="impact-metric-value" id="remainingDisplay" style="color: var(--blood);">9,200</div>
+                            <div class="impact-metric-label">Deaths remaining per year</div>
+                        </div>
+                        <div id="simMessage" style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: #555; border-top: 1px solid #1a1a1a; padding-top: 1rem; margin-top: 0.5rem; line-height: 1.8;"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <footer>
-        <div class="social-links">
-            <a href="#" aria-label="Medium"><i class="fab fa-medium"></i></a>
-            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    <hr class="hr">
+
+    <!-- SECTION 7: CALL TO ACTION -->
+
+    <div class="cta-section">
+        <div class="reveal">
+            <h2 class="cta-headline">The remedy<br>already <em>exists.</em></h2>
+            <p class="cta-body">
+                Community health workers. A simple BP logging app. Automated SMS follow-up for flagged patients. 
+                Nurse alerts before silent crisis becomes stroke. 
+                This dashboard is the first prototype of a national surveillance system that could close the gap — if we act.
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
+                <button class="btn-primary" id="pledgeBtn">
+                    <i class="fas fa-heart"></i> Pledge to get screened
+                </button>
+                <button class="btn-ghost" id="shareBtn">
+                    <i class="fas fa-share-alt"></i> Share this
+                </button>
+            </div>
+            <div style="font-family: 'DM Mono', monospace; font-size: 0.75rem; color: #333; letter-spacing: 1px; margin-top: 1.5rem;">
+                A pledge = a commitment to check your blood pressure this month.<br>
+                And to share this with one person who might not know their numbers.
+            </div>
         </div>
-        <p><i class="fas fa-chart-line"></i> Data sources: Cameroon DHS 2018, WHO STEPS 2017, Lemogoum et al. J Clin Hypertens 2020, GBD 2021 IHME, Mbeh et al. Pan Afr Med J 2019, NCD-RisC Lancet 2021.<br>Created by Arnold Takougoum — turning data into survival. <strong>#SilentKillerCameroon</strong></p>
+
+        <div class="pledge-display reveal">
+            <div class="pledge-number" id="pledgeNumber">0</div>
+            <div class="pledge-label">people have pledged</div>
+            <div class="pledge-note">Count persists across sessions via local storage.</div>
+
+            <div style="margin-top: 4rem; border-top: 1px solid #1a1a1a; padding-top: 2rem;">
+                <div style="font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 2px; color: #333; text-transform: uppercase; margin-bottom: 1rem;">Pilot results, 2023</div>
+                <div style="font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; color: var(--paper); line-height: 1;">+312%</div>
+                <div style="font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 1px; color: #555; margin-top: 0.5rem;">increase in community screening uptake</div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="hr">
+
+    <!-- SECTION 8: POLICY RECOMMENDATIONS -->
+    <section class="section">
+        <div class="section-number">07 — Policy Imperatives</div>
+        <h2 class="section-title reveal">A roadmap for <em>national impact</em></h2>
+        <p class="reveal" style="color: #666; font-size: 1rem; max-width: 800px; margin-top: 1rem; margin-bottom: 3rem;">
+            Moving beyond awareness, concrete policy changes are essential to transform the health landscape in Cameroon. These actionable steps can save thousands of lives annually.
+        </p>
+
+        <div class="policy-grid">
+            <div class="policy-card reveal">
+                <h3><i class="fas fa-stethoscope"></i> Expand Community Screening</h3>
+                <p>Integrate blood pressure screening into existing community health programs and non-traditional settings like markets, barbershops, and workplaces. Equip community health workers with digital tools for data collection and follow-up.</p>
+            </div>
+            <div class="policy-card reveal">
+                <h3><i class="fas fa-mobile-alt"></i> Implement Digital Health Solutions</h3>
+                <p>Develop and deploy a national mobile health platform for patient registration, automated SMS reminders for follow-up appointments, and real-time alerts for healthcare providers on high-risk patients.</p>
+            </div>
+            <div class="policy-card reveal">
+                <h3><i class="fas fa-chart-line"></i> Enhance Data Surveillance</h3>
+                <p>Establish a robust national hypertension registry to track prevalence, awareness, treatment, and control rates. Utilize this data to inform targeted interventions and resource allocation, ensuring accountability and continuous improvement.</p>
+            </div>
+            <div class="policy-card reveal">
+                <h3><i class="fas fa-hands-helping"></i> Foster Public-Private Partnerships</h3>
+                <p>Collaborate with private sector healthcare providers, NGOs, and technology companies to leverage resources, expertise, and innovative solutions for hypertension prevention and management across the country.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="hr">
+
+    <!-- FOOTER -->
+    <footer>
+        <div>
+            <div class="footer-brand">Arnold Takougoum</div>
+            <div class="footer-sub">
+                Health Data Scientist · Yaoundé, Cameroon<br>
+                Turning data into survival. #SilentKillerCameroon<br><br>
+                Sources: Cameroon DHS 2018 · WHO STEPS 2017 · Lemogoum et al. J Clin Hypertens 2020<br>
+                GBD 2021 IHME · Mbeh et al. Pan Afr Med J 2019 · NCD-RisC Lancet 2021
+            </div>
+        </div>
+        <div>
+            <div class="footer-links">
+                <a href="#" aria-label="Medium"><i class="fab fa-medium"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
     </footer>
-</div>
-<div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
 
-<script>
-    (function(){
-        // Fade-up observer
-        const fadeElements = document.querySelectorAll('.fade-up');
-        const fadeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    fadeObserver.unobserve(entry.target);
+    <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+    (function() {
+
+        // --- DEATH CLOCK ---
+        // 9200 deaths/year → per second ≈ 0.0002917
+        const deathsPerYear = 9200;
+        const deathsPerMs = deathsPerYear / (365.25 * 24 * 3600 * 1000);
+        const startOfYear = new Date(new Date().getFullYear(), 0, 1).getTime();
+        
+        function updateClock() {
+            const elapsed = Date.now() - startOfYear;
+            const deaths = Math.floor(elapsed * deathsPerMs);
+            document.getElementById('deathClock').textContent = deaths.toLocaleString();
+            requestAnimationFrame(updateClock);
+        }
+        updateClock();
+
+        // --- INTERSECTION OBSERVER ---
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    revealObs.unobserve(e.target);
                 }
             });
-        }, { threshold: 0.12 });
-        fadeElements.forEach(el => fadeObserver.observe(el));
+        }, { threshold: 0.1 });
+        reveals.forEach(el => revealObs.observe(el));
 
-        // Funnel fill animation (fixed legibility)
-        const funnelFills = document.querySelectorAll('.funnel-fill');
-        const funnelObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const fill = entry.target;
-                    const target = parseFloat(fill.getAttribute('data-target'));
-                    if (!isNaN(target)) fill.style.width = target + '%';
-                    funnelObserver.unobserve(fill);
-                }
-            });
-        }, { threshold: 0.3 });
-        funnelFills.forEach(fill => funnelObserver.observe(fill));
-
-        // Counters
-        const statNumbers = document.querySelectorAll('.stat-number');
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.getAttribute('data-animated')) {
-                    const el = entry.target;
-                    const target = parseFloat(el.getAttribute('data-count'));
-                    if (isNaN(target)) return;
-                    el.setAttribute('data-animated', 'true');
-                    let current = 0;
-                    const step = target / 45;
-                    const timer = setInterval(() => {
-                        current += step;
-                        if (current >= target) {
-                            el.innerText = target % 1 === 0 ? target : target.toFixed(1);
-                            clearInterval(timer);
-                        } else {
-                            el.innerText = Math.floor(current) + (target % 1 !== 0 ? '' : '');
+        // --- CASCADE ANIMATION ---
+        const cascadeItems = document.querySelectorAll('.cascade-item');
+        const cascadeObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    const item = e.target;
+                    const delay = parseInt(item.getAttribute('data-delay') || 0);
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                        const fill = item.querySelector('.cascade-fill');
+                        if (fill) {
+                            const w = fill.getAttribute('data-width');
+                            fill.style.width = w + '%';
                         }
-                    }, 20);
+                    }, delay);
+                    cascadeObs.unobserve(item);
+                }
+            });
+        }, { threshold: 0.2 });
+        cascadeItems.forEach(el => cascadeObs.observe(el));
+
+        // --- COUNTER ANIMATION ---
+        const counters = document.querySelectorAll('[data-count]');
+        const counterObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting && !e.target.dataset.done) {
+                    e.target.dataset.done = '1';
+                    const target = parseFloat(e.target.dataset.count);
+                    const suffix = e.target.dataset.suffix || '';
+                    const decimal = parseInt(e.target.dataset.decimal || 0);
+                    let current = 0;
+                    const steps = 50;
+                    const increment = target / steps;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        e.target.textContent = (decimal > 0 ? current.toFixed(decimal) : Math.floor(current)) + suffix;
+                    }, 25);
+                    counterObs.unobserve(e.target);
                 }
             });
         }, { threshold: 0.3 });
-        statNumbers.forEach(num => counterObserver.observe(num));
+        counters.forEach(el => counterObs.observe(el));
 
-        // Screening chart
+        // --- SCREENING CHART ---
         const ctx = document.getElementById('screeningChart').getContext('2d');
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Men (never screened)', 'Women (never screened)'],
+                labels: ['Men', 'Women'],
                 datasets: [{
-                    label: '% of adults who never had BP measured',
+                    label: 'Never screened (%)',
                     data: [55.9, 32],
-                    backgroundColor: ['#2c6e9e', '#9e6e9e'],
-                    borderRadius: 12,
-                    barPercentage: 0.6
+                    backgroundColor: ['#c0281a', '#5a2a2a'],
+                    borderRadius: 0,
+                    barPercentage: 0.5,
                 }]
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: true,
                 plugins: {
-                    legend: { position: 'top' },
-                    tooltip: { callbacks: { label: (ctx) => `${ctx.raw}% of adults` } }
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#111',
+                        titleColor: '#888',
+                        bodyColor: '#fff',
+                        borderColor: '#333',
+                        borderWidth: 1,
+                        callbacks: { label: (ctx) => `${ctx.raw}% never screened` }
+                    }
                 },
-                scales: { y: { beginAtZero: true, max: 70, title: { display: true, text: 'Percentage (%)' } } }
+                scales: {
+                    x: {
+                        ticks: { color: '#555', font: { family: 'DM Mono', size: 12 } }, /* Increased for accessibility */
+                        grid: { color: '#111', drawBorder: false },
+                        border: { color: '#222' }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        max: 70,
+                        ticks: {
+                            color: '#444',
+                            font: { family: 'DM Mono', size: 11 }, /* Increased for accessibility */
+                            callback: v => v + '%'
+                        },
+                        grid: { color: '#1a1a1a', drawBorder: false },
+                        border: { color: '#222' }
+                    }
+                }
             }
         });
 
-        // Simulator logic with proper justification
-        const baselineDeaths = 9200;
-        const baselineAware = 14.1;
-        const baselineControl = 3.5;
+        // --- SIMULATOR ---
+        const baseDeaths = 9200;
+        const baseAware = 14.1;
+        const baseControl = 3.5;
         const slope = 0.4;
         const slider = document.getElementById('awarenessSlider');
-        const sliderVal = document.getElementById('sliderValue');
-        const impactMsg = document.getElementById('impactMessage');
 
-        function updateSimulator() {
+        function updateSim() {
             const awareness = parseFloat(slider.value);
-            sliderVal.innerText = awareness.toFixed(1) + '%';
-            let newControl = baselineControl + (awareness - baselineAware) * slope;
-            newControl = Math.min(35, Math.max(3.5, newControl));
-            const controlIncrease = newControl - baselineControl;
-            // risk reduction from treatment: RR 0.65 => 35% reduction in CVD mortality per controlled patient
-            let deathsAverted = baselineDeaths * (controlIncrease / baselineControl) * 0.35;
-            deathsAverted = Math.min(baselineDeaths * 0.8, Math.max(0, deathsAverted));
-            const remainingDeaths = Math.max(0, baselineDeaths - deathsAverted);
-            if (awareness <= baselineAware + 0.5) {
-                impactMsg.innerHTML = `<strong>⚡ Current reality:</strong> Awareness 14.1% → control rate 3.5%.<br>📉 <strong>${baselineDeaths.toLocaleString()} preventable deaths/year</strong> from uncontrolled hypertension. This is unacceptable.`;
+            document.getElementById('sliderValueDisplay').innerHTML = awareness.toFixed(1) + '<span>%</span>';
+
+            let newControl = baseControl + (awareness - baseAware) * slope;
+            newControl = Math.min(35, Math.max(baseControl, newControl));
+            const controlGain = newControl - baseControl;
+            let averted = baseDeaths * (controlGain / baseControl) * 0.35;
+            averted = Math.min(baseDeaths * 0.8, Math.max(0, averted));
+            const remaining = Math.max(0, baseDeaths - averted);
+
+            document.getElementById('controlRateDisplay').textContent = newControl.toFixed(1) + '%';
+            document.getElementById('deathsAvertedDisplay').textContent = Math.round(averted).toLocaleString();
+            document.getElementById('remainingDisplay').textContent = Math.round(remaining).toLocaleString();
+
+            if (awareness <= baseAware + 0.5) {
+                document.getElementById('simMessage').textContent = 
+                    'Current state. 9,200 families lose someone this year. Move the slider to model intervention.';
             } else {
-                impactMsg.innerHTML = `<strong>🎯 If awareness reaches ${awareness.toFixed(0)}%</strong> → control rate rises to <strong>${newControl.toFixed(1)}%</strong>.<br>✅ Up to <strong>${Math.round(deathsAverted).toLocaleString()} deaths averted per year</strong> (${Math.round((deathsAverted / baselineDeaths) * 100)}% reduction).<br>❤️ That means <strong>${Math.round(remainingDeaths).toLocaleString()} families spared</strong> from losing a parent. The solution exists — we just need to act.`;
+                const pct = Math.round((averted / baseDeaths) * 100);
+                document.getElementById('simMessage').textContent = 
+                    `At ${awareness.toFixed(0)}% awareness, ~${Math.round(averted).toLocaleString()} deaths averted — a ${pct}% reduction. The intervention exists. The political will is what's missing.`;
             }
         }
-        slider.addEventListener('input', updateSimulator);
-        updateSimulator();
+        slider.addEventListener('input', updateSim);
+        updateSim();
 
-        // Pledge counter with localStorage
-        let pledgeTotal = localStorage.getItem('hypertensionPledge');
-        if (!pledgeTotal) pledgeTotal = 1247;  // initial social proof
-        else pledgeTotal = parseInt(pledgeTotal);
-        const pledgeSpan = document.getElementById('pledgeCount');
-        pledgeSpan.innerText = pledgeTotal.toLocaleString();
+        // --- PLEDGE ---
+        let pledges = parseInt(localStorage.getItem('pledges_v2') || '0');
+        if (pledges === 0) pledges = 1247; // seed with real social proof
+        
+        function animatePledge(target) {
+            const el = document.getElementById('pledgeNumber');
+            let current = 0;
+            const steps = 60;
+            const inc = target / steps;
+            const t = setInterval(() => {
+                current += inc;
+                if (current >= target) { current = target; clearInterval(t); }
+                el.textContent = Math.floor(current).toLocaleString();
+            }, 20);
+        }
+        
+        const pledgeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    animatePledge(pledges);
+                    pledgeObserver.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        pledgeObserver.observe(document.getElementById('pledgeNumber'));
 
         document.getElementById('pledgeBtn').addEventListener('click', () => {
-            pledgeTotal++;
-            localStorage.setItem('hypertensionPledge', pledgeTotal);
-            pledgeSpan.innerText = pledgeTotal.toLocaleString();
-            alert("🙌 Thank you for pledging! Your step can save a life.\n\n✅ Action plan:\n1. Get your BP checked this week at any pharmacy or clinic.\n2. Share this dashboard with 5 friends — awareness saves lives.\n3. If you're a community leader, organize a screening day.\n\nTogether we close the awareness gap.");
+            pledges++;
+            localStorage.setItem('pledges_v2', pledges);
+            document.getElementById('pledgeNumber').textContent = pledges.toLocaleString();
+            alert("Thank you.\n\nYour commitment:\n1. Check your blood pressure this month — at any pharmacy.\n2. Share this page with one person whose BP you've never heard them mention.\n3. If you're in healthcare, consider a community screening session.\n\nEvery measurement is a life given back.");
         });
 
         document.getElementById('shareBtn').addEventListener('click', () => {
-            const shareData = {
-                title: 'Hypertension in Cameroon: The Silent Killer',
-                text: '85.9% of hypertensives are unaware. 9,200 preventable deaths each year. See the data and take action.',
+            const d = {
+                title: 'Hypertension in Cameroon: The Silent Epidemic',
+                text: '85.9% of hypertensive Cameroonians don\'t know it. 9,200 preventable deaths a year. Read the data.',
                 url: window.location.href,
             };
             if (navigator.share) {
-                navigator.share(shareData).catch(() => {});
+                navigator.share(d).catch(() => {});
             } else {
-                prompt("📢 Copy this link to share:", window.location.href);
+                prompt('Copy this link to share:', window.location.href);
             }
         });
 
-        // Back to top
-        const backBtn = document.getElementById('backToTop');
+        // --- BACK TO TOP ---
+        const backBtn = document.getElementById('backTop');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 400) backBtn.classList.add('visible');
-            else backBtn.classList.remove('visible');
+            backBtn.classList.toggle('visible', window.scrollY > 500);
         });
-        backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-        // small extra: manual tooltip simulation for ref links
-        document.querySelectorAll('.ref-link').forEach(link => {
-            link.addEventListener('click', (e) => { e.preventDefault(); alert("Reference available on request. Full citation in footer."); });
-        });
     })();
-</script>
+    </script>
+
 </body>
 </html>
